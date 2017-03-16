@@ -9,12 +9,12 @@ fi
 
 case $PLATFORM in
     linux-x86)
-        export CC="clang -m32"
-        export CXX="clang++ -m32"
+        export CC="gcc -m32"
+        export CXX="g++ -m32"
         ;;
     linux-x86_64)
-        export CC="clang -m64"
-        export CXX="clang++ -m64"
+        export CC="gcc -m64"
+        export CXX="g++ -m64"
         ;;
 #    linux-armhf)
 #        export CC_FLAGS="clang -target arm -march=armv7 -mfloat-abi=hard"
@@ -28,7 +28,7 @@ case $PLATFORM in
         ;;
 esac
 
-LLVM_VERSION=3.8.0
+LLVM_VERSION=3.9.1
 download http://llvm.org/releases/$LLVM_VERSION/llvm-$LLVM_VERSION.src.tar.xz llvm-$LLVM_VERSION.src.tar.xz
 download http://llvm.org/releases/$LLVM_VERSION/cfe-$LLVM_VERSION.src.tar.xz cfe-$LLVM_VERSION.src.tar.xz
 
@@ -44,7 +44,7 @@ rm -Rf clang
 mv cfe-$LLVM_VERSION.src clang
 cd ../build
 
-../configure --prefix=$INSTALL_PATH --enable-shared --enable-optimized
+$CMAKE -DCMAKE_INSTALL_PREFIX=../.. -DDLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_LINK_LLVM_DYLIB=ON -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=host -DLIBXML2_LIBRARIES= ..
 make -j $MAKEJ
 make install
 

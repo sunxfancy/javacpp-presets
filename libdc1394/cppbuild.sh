@@ -7,7 +7,7 @@ if [[ -z "$PLATFORM" ]]; then
     exit
 fi
 
-LIBDC1394_VERSION=2.2.4
+LIBDC1394_VERSION=2.2.5
 download http://downloads.sourceforge.net/project/libdc1394/libdc1394-2/$LIBDC1394_VERSION/libdc1394-$LIBDC1394_VERSION.tar.gz libdc1394-$LIBDC1394_VERSION.tar.gz
 
 mkdir -p $PLATFORM
@@ -33,6 +33,7 @@ case $PLATFORM in
         make install-strip
         ;;
     linux-ppc64le)
+        sed -i s/elf64ppc/elf64lppc/ configure
         CC="$OLDCC -m64" ./configure --prefix=$INSTALL_PATH
         make -j4
         make install-strip
@@ -48,7 +49,7 @@ case $PLATFORM in
         mkdir -p "$INSTALL_PATH/bin"
         cp "/c/Program Files (x86)/CMU/1394Camera/lib/1394camera.dll" "$INSTALL_PATH/bin/lib1394camera.dll"
         export LIBRARY_PATH="$INSTALL_PATH/bin/"
-        CC="gcc -m32 -static-libgcc" ./configure --prefix=$INSTALL_PATH --enable-shared --disable-static
+        CC="gcc -m32 -Duint=int -static-libgcc" ./configure --prefix=$INSTALL_PATH --enable-shared --disable-static
         make -j4
         make install-strip
         ;;
@@ -57,7 +58,7 @@ case $PLATFORM in
         mkdir -p "$INSTALL_PATH/bin"
         cp "/c/Program Files (x86)/CMU/1394Camera/lib64/x64/1394camera.dll" "$INSTALL_PATH/bin/lib1394camera.dll"
         export LIBRARY_PATH="$INSTALL_PATH/bin/"
-        CC="gcc -m64 -static-libgcc" ./configure --prefix=$INSTALL_PATH --enable-shared --disable-static
+        CC="gcc -m64 -Duint=int -static-libgcc" ./configure --prefix=$INSTALL_PATH --enable-shared --disable-static
         make -j4
         make install-strip
         ;;

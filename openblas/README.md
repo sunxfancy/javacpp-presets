@@ -5,7 +5,7 @@ Introduction
 ------------
 This directory contains the JavaCPP Presets module for:
 
- * OpenBLAS 0.2.18  http://www.openblas.net/
+ * OpenBLAS 0.2.19  http://www.openblas.net/
 
 Please refer to the parent README.md file for more detailed information about the JavaCPP Presets.
 
@@ -36,15 +36,15 @@ We can use [Maven 3](http://maven.apache.org/) to download and install automatic
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.bytedeco.javacpp-presets.openblas</groupId>
     <artifactId>openblas</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <properties>
         <exec.mainClass>ExampleDGELSrowmajor</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.bytedeco.javacpp-presets</groupId>
-            <artifactId>openblas</artifactId>
-            <version>0.2.18-1.2</version>
+            <artifactId>openblas-platform</artifactId>
+            <version>0.2.19-1.3</version>
         </dependency>
     </dependencies>
 </project>
@@ -148,6 +148,9 @@ public class ExampleDGELSrowmajor {
 
     /* Main program */
     public static void main(String[] args) {
+        blas_set_num_threads(4);
+        System.out.println("vendor = " + blas_get_vendor() + ", num_threads = " + blas_get_num_threads());
+
         /* Locals */
         double[] A = {1, 1, 1, 2, 3, 4, 3, 5, 2, 4, 2, 5, 5, 4, 3};
         double[] b = {-10, -3, 12, 14, 14, 12, 16, 16, 18, 16};

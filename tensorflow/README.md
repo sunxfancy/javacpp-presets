@@ -5,7 +5,7 @@ Introduction
 ------------
 This directory contains the JavaCPP Presets module for:
 
- * TensorFlow 0.10.0  http://www.tensorflow.org/
+ * TensorFlow 1.0.1  http://www.tensorflow.org/
 
 Please refer to the parent README.md file for more detailed information about the JavaCPP Presets.
 
@@ -21,7 +21,7 @@ Sample Usage
 ------------
 Here is a simple example of TensorFlow ported to Java from this C++ source file:
 
- * https://github.com/tensorflow/tensorflow/blob/v0.10.0/tensorflow/cc/tutorials/example_trainer.cc
+ * https://github.com/tensorflow/tensorflow/blob/r1.0/tensorflow/cc/tutorials/example_trainer.cc
 
 We can use [Maven 3](http://maven.apache.org/) to download and install automatically all the class files as well as the native binaries. To run this sample code, after creating the `pom.xml` and `src/main/java/ExampleTrainer.java` source files below, simply execute on the command line:
 ```bash
@@ -34,15 +34,15 @@ We can use [Maven 3](http://maven.apache.org/) to download and install automatic
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.bytedeco.javacpp-presets.tensorflow</groupId>
     <artifactId>exampletrainer</artifactId>
-    <version>1.2.5-SNAPSHOT</version>
+    <version>1.3</version>
     <properties>
         <exec.mainClass>ExampleTrainer</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.bytedeco.javacpp-presets</groupId>
-            <artifactId>tensorflow</artifactId>
-            <version>0.10.0-1.2.5-SNAPSHOT</version>
+            <artifactId>tensorflow-platform</artifactId>
+            <version>1.0.1-1.3</version>
         </dependency>
     </dependencies>
 </project>
@@ -69,6 +69,7 @@ import java.nio.FloatBuffer;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import static org.bytedeco.javacpp.tensorflow.*;
 
 public class ExampleTrainer {
@@ -221,11 +222,12 @@ public class ExampleTrainer {
             }});
         }
 
+        step_threads.shutdown();
+        step_threads.awaitTermination(1, TimeUnit.MINUTES);
         s = session.Close();
         if (!s.ok()) {
             throw new Exception(s.error_message().getString());
         }
-        step_threads.shutdown();
     }
 
     static void ConcurrentSessions(final Options opts) throws Exception {
