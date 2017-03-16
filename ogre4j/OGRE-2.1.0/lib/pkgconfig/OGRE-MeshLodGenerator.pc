@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: OGRE-MeshLodGenerator
+Description: Mesh Lod Generator for OGRE
+Version: 2.1.0unstable
+Requires: OGRE = 2.1.0unstable
+Libs: -L${libdir} -lOgreMeshLodGenerator
+Cflags: -I${includedir}/OGRE/MeshLodGenerator 

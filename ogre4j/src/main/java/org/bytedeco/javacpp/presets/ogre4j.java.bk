@@ -1,0 +1,183 @@
+/*
+ * Copyright (C) 2015 Samuel Audet
+ *
+ * Licensed either under the Apache License, Version 2.0, or (at your option)
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation (subject to the "Classpath" exception),
+ * either version 2, or any later version (collectively, the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.gnu.org/licenses/
+ *     http://www.gnu.org/software/classpath/license.html
+ *
+ * or as provided in the LICENSE.txt file that accompanied this code.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.bytedeco.javacpp.presets;
+
+import org.bytedeco.javacpp.annotation.*;
+import org.bytedeco.javacpp.tools.*;
+
+@Properties(target = "org.bytedeco.javacpp.ogre4j", value = @Platform(value = {"linux-x86", "linux-x86_64", "macosx"},
+    include = {
+    "OgreHeader.hpp"
+},
+    link = "OgreMain"))
+public class ogre4j implements InfoMapper {
+    public void map(InfoMap infoMap) {
+        infoMap
+			.put(new Info("_StringStreamBase", "Ogre::stringstream", "Ogre::StringStream", "std::basic_stringstream<char,std::char_traits<char>,std::allocator<char> >").cast().pointerTypes("StringStream").define())
+			.put(new Info("ConstMapIterator<NumericTrackList>").cast().pointerTypes("NumericTrackIteratorRef").define())
+			.put(new Info("ConstMapIterator<OldNodeTrackList>").cast().pointerTypes("OldNodeTrackIteratorRef").define())
+			.put(new Info("ConstMapIterator<VertexTrackList>").cast().pointerTypes("VertexTrackIteratorRef").define())
+			.put(new Info("ConstVectorIterator<NodeTrackList>").cast().pointerTypes("NodeTrackIteratorRef").define())
+			.put(new Info("FastArray<unsigned char>").cast().pointerTypes("ByteFastArrayRef").define())
+			.put(new Info("FastArray<unsigned short>").cast().pointerTypes("UshortFastArrayRef").define())
+			.put(new Info("hash<Ogre::_StringBase>").cast().pointerTypes("StringBaseHashRef").define())
+			.put(new Info("Ogre::list<Ogre::Plane>::type").cast().pointerTypes("PlaneListRef").define())
+			.put(new Info("Ogre::list<Ogre::ResourceGroupManager::ResourceDeclaration>::type").cast().pointerTypes("ResourceDeclarationListRef").define())
+			.put(new Info("Ogre::list<Ogre::ResourceGroupManager::ResourceLocation*>::type").cast().pointerTypes("ResourceLocationPtrListRef").define())
+			.put(new Info("Ogre::list<Ogre::v1::VertexElement>::type").cast().pointerTypes("VertexElementListRef").define())
+			.put(new Info("Ogre::map<Ogre::String,Ogre::GpuSharedParametersPtr>::type").cast().pointerTypes("GpuSharedParametersPtrMapRef").define())
+			.put(new Info("Ogre::map<Ogre::String,Ogre::GpuConstantDefinition>::type").cast().pointerTypes("GpuConstantDefinitionMapRef").define())
+			.put(new Info("Ogre::map<Ogre::String,Ogre::ushort>::type").cast().pointerTypes("SUshortUMapRef").define())
+			.put(new Info("Ogre::map<Ogre::String,bool>::type").cast().pointerTypes("SBoolUMapRef").define())
+			.put(new Info("Ogre::map<Ogre::String,Ogre::String>::type").cast().pointerTypes("SStringUMapRef").define())
+			.put(new Info("Ogre::unordered_map<Ogre::String,Ogre::ushort>::type").cast().pointerTypes("SUshortMapRef").define())
+			.put(new Info("Ogre::map<Ogre::String,Ogre::v1::Animation*>::type").cast().pointerTypes("AnimationMapRef").define())
+			.put(new Info("Ogre::map<Ogre::string,Ogre::GpuSharedParametersPtr>::type").cast().pointerTypes("GpuSharedParametersPtrMapRef").define())
+			.put(new Info("Ogre::map<unsigned short,NumericAnimationTrack*>::type").cast().pointerTypes("NumericTrackListRef").define())
+			.put(new Info("Ogre::map<unsigned short,Ogre::v1::HardwareVertexBufferSharedPtr>::type").cast().pointerTypes("HardwareVertexBufferSharedPtrMapRef").define())
+			.put(new Info("Ogre::map<unsigned short,Ogre::v1::NumericAnimationTrack*>::type").cast().pointerTypes("NumericAnimationTrackPtrMapRef").define())
+			.put(new Info("Ogre::map<unsigned short,Ogre::v1::OldNodeAnimationTrack*>::type").cast().pointerTypes("OldNodeAnimationTrackPtrMapRef").define())
+			.put(new Info("Ogre::map<unsigned short,Ogre::VertexAnimationTrack*>::type").cast().pointerTypes("VertexAnimationTrackPtrMapRef").define())
+			.put(new Info("Ogre::map<unsigned short,OldNodeAnimationTrack*>::type").cast().pointerTypes("OldNodeTrackListRef").define())
+			.put(new Info("Ogre::map<unsigned short,VertexAnimationTrack*>::type").cast().pointerTypes("VertexTrackListRef").define())
+			
+			.put(new Info("std::list<Ogre::Plane>::type").cast().pointerTypes("PlaneListRef").define())
+			.put(new Info("std::list<Ogre::ResourceGroupManager::ResourceDeclaration>::type").cast().pointerTypes("ResourceDeclarationListRef").define())
+			.put(new Info("std::list<Ogre::ResourceGroupManager::ResourceLocation*>::type").cast().pointerTypes("ResourceLocationPtrListRef").define())
+			.put(new Info("std::list<Ogre::v1::VertexElement>::type").cast().pointerTypes("VertexElementListRef").define())
+			.put(new Info("std::map<Ogre::String,Ogre::GpuSharedParametersPtr>::type").cast().pointerTypes("GpuSharedParametersPtrMapRef").define())
+			.put(new Info("std::map<Ogre::String,Ogre::GpuConstantDefinition>::type").cast().pointerTypes("GpuConstantDefinitionMapRef").define())
+			.put(new Info("std::map<Ogre::String,Ogre::ushort>::type").cast().pointerTypes("SUshortUMapRef").define())
+			.put(new Info("std::map<Ogre::String,bool>::type").cast().pointerTypes("SBoolUMapRef").define())
+			.put(new Info("std::map<Ogre::String,Ogre::String>::type").cast().pointerTypes("SStringUMapRef").define())
+			.put(new Info("std::unordered_map<Ogre::String,Ogre::ushort>::type").cast().pointerTypes("SUshortMapRef").define())
+			.put(new Info("std::map<Ogre::String,Ogre::v1::Animation*>::type").cast().pointerTypes("AnimationMapRef").define())
+			.put(new Info("std::map<Ogre::string,Ogre::GpuSharedParametersPtr>::type").cast().pointerTypes("GpuSharedParametersPtrMapRef").define())
+			.put(new Info("std::map<unsigned short,NumericAnimationTrack*>::type").cast().pointerTypes("NumericTrackListRef").define())
+			.put(new Info("std::map<unsigned short,Ogre::v1::HardwareVertexBufferSharedPtr>::type").cast().pointerTypes("HardwareVertexBufferSharedPtrMapRef").define())
+			.put(new Info("std::map<unsigned short,Ogre::v1::NumericAnimationTrack*>::type").cast().pointerTypes("NumericAnimationTrackPtrMapRef").define())
+			.put(new Info("std::map<unsigned short,Ogre::v1::OldNodeAnimationTrack*>::type").cast().pointerTypes("OldNodeAnimationTrackPtrMapRef").define())
+			.put(new Info("std::map<unsigned short,Ogre::VertexAnimationTrack*>::type").cast().pointerTypes("VertexAnimationTrackPtrMapRef").define())
+			.put(new Info("std::map<unsigned short,OldNodeAnimationTrack*>::type").cast().pointerTypes("OldNodeTrackListRef").define())
+			.put(new Info("std::map<unsigned short,VertexAnimationTrack*>::type").cast().pointerTypes("VertexTrackListRef").define())
+			.put(new Info("Ogre::AtomicScalar<unsigned int>").cast().pointerTypes("UIntAtomicScalarRef").define())
+
+			.put(new Info("map<Ogre::ushort,Ogre::ushort>::type").cast().pointerTypes("UshortMapRef").define())
+			.put(new Info("Ogre::map<Ogre::ushort,Ogre::ushort>::type").cast().pointerTypes("UshortMapRef").define())
+
+			.put(new Info("map<size_t,Ogre::GpuLogicalIndexUse>::type").cast().pointerTypes("GpuLogicalIndexUseMapRef").define())
+			.put(new Info("Ogre::map<size_t,Ogre::GpuLogicalIndexUse>::type").cast().pointerTypes("GpuLogicalIndexUseMapRef").define())
+			.put(new Info("MapIterator<Ogre::AnimationStateMap>").cast().pointerTypes("AnimationStateMapIteratorRef").define())
+			.put(new Info("MapIterator<Ogre::ArchiveManager::ArchiveMap>").cast().pointerTypes("ArchiveMapIteratorRef").define())
+			.put(new Info("MapIterator<Ogre::ConfigFile::SettingsBySection>").cast().pointerTypes("SettingsBySectionIteratorRef").define())
+			.put(new Info("MapIterator<Ogre::ConfigFile::SettingsMultiMap>").cast().pointerTypes("SettingsMultiMapIteratorRef").define())
+			.put(new Info("multimap<Ogre::RenderWindow*,Ogre::WindowEventListener*>::type").cast().pointerTypes("WindowEventListenerPtrMultiMapRef").define())
+			.put(new Info("multimap<Ogre::TextureUnitState::TextureEffectType,Ogre::TextureUnitState::TextureEffect>::type").cast().pointerTypes("TextureEffectMultiMap").define())
+			.put(new Info("multimap<size_t,VertexBoneAssignment>::type").cast().pointerTypes("VertexBoneAssignmentMultimapRef").define())
+			.put(new Info("Ogre::BackgroundProcessTicket").valueTypes("long"))
+			.put(new Info("Ogre::ControllerValue<Ogre::Real>").cast().pointerTypes("RealControllerValueRef").define())
+			.put(new Info("Ogre::map<Ogre::String,Ogre::ProfileInstance*>::type").cast().pointerTypes("ProfileInstanceMapRef").define())
+			.put(new Info("Ogre::RenderTexture").cast().pointerTypes("RenderTexture").define())
+			.put(new Info("Ogre::set<Ogre::String>::type").cast().pointerTypes("StringSetRef").define())
+			.put(new Info("Ogre::set<Ogre::v1::Entity*>::type").cast().pointerTypes("EntityPtrSetRef").define())
+			.put(new Info("Ogre::set<std::string>::type").cast().pointerTypes("StringSetRef").define())
+			.put(new Info("Ogre::SharedPtr<Ogre::FileInfoList>").cast().pointerTypes("FileInfoListPtr").define())
+			.put(new Info("Ogre::SharedPtr<Ogre::v1::HardwareIndexBuffer>").cast().pointerTypes("HardwareIndexBufferPtr").define())
+			.put(new Info("Ogre::SharedPtr<Ogre::v1::HardwarePixelBuffer>").cast().pointerTypes("HardwarePixelBufferPtr").define())
+			.put(new Info("Ogre::SharedPtr<Ogre::v1::HardwareVertexBuffer>").cast().pointerTypes("HardwareVertexBufferPtr").define())
+			.put(new Info("Ogre::Singleton<HardwareBufferManager>").cast().pointerTypes("HardwareBufferManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::Root>").cast().pointerTypes("RootSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::ArchiveManager>").cast().pointerTypes("ArchiveManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::ControllerManager>").cast().pointerTypes("ControllerManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::GpuProgramManager>").cast().pointerTypes("GpuProgramManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::HardwareBufferManager>").cast().pointerTypes("HardwareBufferManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::HighLevelGpuProgramManager>").cast().pointerTypes("HighLevelGpuProgramManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::MaterialManager>").cast().pointerTypes("MaterialManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::MeshManager>").cast().pointerTypes("MeshManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::LogManager>").cast().pointerTypes("LogManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::ResourceBackgroundQueue>").cast().pointerTypes("ResourceBackgroundQueueSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::ResourceGroupManager>").cast().pointerTypes("ResourceGroupManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::SceneManagerEnumerator>").cast().pointerTypes("SceneManagerEnumeratorSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::TextureManager>").cast().pointerTypes("TextureManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::Profiler>").cast().pointerTypes("ProfilerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::ParticleSystemManager>").cast().pointerTypes("ParticleSystemManagerSgtRef").define())
+			.put(new Info("Ogre::Singleton<Ogre::v1::OldSkeletonManager>").cast().pointerTypes("OldSkeletonManagerSgtRef").define())
+			.put(new Info("std::pair<bool,Ogre::Real>").cast().pointerTypes("RealPairRef").define())
+			.put(new Info("std::pair<size_t,size_t>").cast().pointerTypes("SizetPairRef").define())
+			.put(new Info("uint64").valueTypes("long").define())
+			.put(new Info("uint32").valueTypes("int").define())
+			.put(new Info("uint16").valueTypes("int").define())
+			.put(new Info("uint8").valueTypes("byte").define())
+			.put(new Info("unordered_map<Ogre::String,ushort>::type").cast().pointerTypes("UshortUnorderedMapRef").define())
+			.put(new Info("unordered_map<unsigned int,Ogre::String>::type").cast().pointerTypes("StringUnorderedMapRef").define())
+			.put(new Info("vector<IndexData*>::type").cast().pointerTypes("IndexDataPtrVectorRef").define())
+			.put(new Info("vector<Ogre::Camera*>::type").cast().pointerTypes("CameraPtrVectorRef").define())
+			.put(new Info("vector<Ogre::VertexElement2>::type").cast().pointerTypes("VertexElement2VectorRef").define())
+			.put(new Info("vector<Ogre::VertexElement2Vec>::type").cast().pointerTypes("VertexElement2VecVectorRef").define())
+		
+			.put(new Info("vector<Ogre::InstancedEntity*>::type").cast().pointerTypes("InstancedEntityPtrVectorRef").define())
+			.put(new Info("vector<Ogre::v1::NodeAnimationTrack*>::type").cast().pointerTypes("NodeAnimationTrackVectorRef").define())
+			.put(new Info("vector<Ogre::ObjectMemoryManager*>::type").cast().pointerTypes("ObjectMemoryManagerPtrVectorRef").define())
+			.put(new Info("vector<Ogre::Plugin*>::type").cast().pointerTypes("PluginPtrVectorRef").define())
+			.put(new Info("vector<Ogre::RenderSystem*>::type").cast().pointerTypes("RenderSystemPtrVectorRef").define())
+			.put(new Info("vector<Ogre::RenderTexture*>::type").cast().pointerTypes("RenderTexturePtrVectorRef").define())
+			.put(new Info("vector<Ogre::String>::type").cast().pointerTypes("StringVectorRef").define())
+			.put(new Info("vector<Ogre::ParameterDef>::type").cast().pointerTypes("ParameterDefVectorRef").define())
+			.put(new Info("vector<Ogre::v1::StaticGeometry::SubMeshLodGeometryLink>::type").cast().pointerTypes("SubMeshLodGeometryLinkVectorRef").define())
+
+			.put(new Info("vector<Ogre::v1::VertexPoseKeyFrame::PoseRef>::type").cast().pointerTypes("PoseRefVectorRef").define())
+			.put(new Info("SharedPtr<Ogre::ControllerValue<Ogre::Ogre::Real> >").cast().pointerTypes("RealControllerValueSPtr").define())
+			.put(new Info("SharedPtr<Ogre::ControllerFunction<Ogre::Ogre::Real> >").cast().pointerTypes("RealControllerFunctionSPtr").define())
+			.put(new Info("vector<std::pair<Ogre::String,Ogre::String> >::type").cast().pointerTypes("StringPairVectorRef").define())
+			.put(new Info("VectorIterator<Ogre::Material::Techniques>").cast().pointerTypes("TechniquesVectorIteratorRef").define())
+			.put(new Info("VectorIterator<Ogre::v1::VertexPoseKeyFrame::PoseRefList>").cast().pointerTypes("PoseRefListVectorIteratorRef").define())
+			.put(new Info("WorkQueue::RequestID").cast().valueTypes("unsigned long"))
+	        .put(new Info("map<size_t,Ogre::Vector3>::type").cast().pointerTypes("Vector3MapRef").define())
+	        .put(new Info("Ogre::Controller<Ogre::Real>").cast().pointerTypes("RealControllerRef").define())
+	        .put(new Info("vector<float>::type").cast().pointerTypes("FloatVectorRef").define())
+	        .put(new Info("vector<char*>::type").cast().pointerTypes("CharPtrVectorRef").define())
+
+	        .put(new Info("vector<Ogre::Plane>::type").cast().pointerTypes("PlaneVectorRef").define())
+	        .put(new Info("vector<Ogre::Real>::type").cast().pointerTypes("RealVectorRef").define())
+	        .put(new Info("vector<Ogre::uint>::type").cast().pointerTypes("UintVectorRef").define())
+	        .put(new Info("vector<Ogre::Vector3>::type").cast().pointerTypes("Vector3VectorRef").define())
+	        .put(new Info("vector<Ogre::Vector4>::type").cast().pointerTypes("Vector4VectorRef").define())
+        	.put(new Info("_StringBase", "Ogre::String", "std::string").pointerTypes("String"))
+        	
+        	.put(new Info("__cplusplus").define())
+        	.put(new Info("OGRE_ARCH_TYPE", "OGRE_ARCHITECTURE_64").define())
+        	.put(new Info("OGRE_PLATFORM", "OGRE_PLATFORM_LINUX").define())
+        	.put(new Info("OGRE_WCHAR_T_STRINGS", "OGRE_STRING_USE_CUSTOM_MEMORY_ALLOCATOR").define(false))
+        	.put(new Info("Real", "Ogre::Real").valueTypes("double").define())
+        	.put(new Info("set<Ogre::ushort>::type").cast().pointerTypes("UshortSetRef").define())
+        	.put(new Info("vector<Ogre::ushort>::type").cast().pointerTypes("UshortVectorRef").define())
+			.put(new Info("Ogre::StringUtil", "HardwareBuffer", "BufferAlloc", "OperationType", 
+						  "type_info", "ResourceHandle", "LinkedSkeletonAnimSourceIterator",
+						  "FileInfoListPtr", "FloatVectorRef", "LightList", "IdType", "FrustumPlane", 
+						  "Vector4VectorRef", "PlaneVectorRef", "ViewportAlloc", "SceneMgtAlignedAlloc",
+						  "AutoConstantEntry", "SubMeshAlloc", "SubEntityAlloc", "NodeTrackIteratorRef",
+						  "AnimationStateMapIteratorRef", "PoseRefVectorRef", "HardwareVertexBufferPtr",
+						  "EntityPtrSetRef").skip())
+		;
+    }
+}
